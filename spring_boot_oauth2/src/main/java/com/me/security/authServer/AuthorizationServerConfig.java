@@ -12,8 +12,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-//@Configuration
-//@EnableAuthorizationServer
+@Configuration
+@EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
 
 //	@Autowired
@@ -22,32 +22,31 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //	
 //	@Autowired
 //	private TokenStore tokenStore;
-//	
-//	@Override
-//	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//		clients
-//		.inMemory()
-//		.withClient("client")
-//		.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
-//		.scopes("read", "write")
-//		.autoApprove(true)
-//		.secret(passwordEncoder().encode("password"))
-//		;
-//	}
-//
-//	private PasswordEncoder passwordEncoder() {
-//		
-//		return new BCryptPasswordEncoder();
-//	}
-//
+	
+	@Override
+	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		clients
+		.inMemory()
+		.withClient("client")
+		.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+		.scopes("read", "write")
+		.autoApprove(true)
+		.secret(passwordEncoder().encode("password"))
+		;
+	}
+
+	private PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 //	@Override
 //	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 //		endpoints
 //		.authenticationManager(authenticationManager)
 //		.tokenStore(tokenStore);
 //	}
-//	
-//	public TokenStore tokenStore() {
-//		return new InMemoryTokenStore();
-//	}
+	
+	public TokenStore tokenStore() {
+		return new InMemoryTokenStore();
+	}
 }

@@ -3,6 +3,7 @@ package com.me.model;
 import java.util.Collection;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -13,8 +14,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.me.model.supr.IDGenarator;
 
+@Entity
 public class Oauth_User extends IDGenarator implements UserDetails{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String email;
 	private String username;
 	private String password;
